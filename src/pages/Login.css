@@ -1,0 +1,9 @@
+.login__bg{
+    background-image: "" ;
+    height: 92vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center;
+        overflow-x: hidden;
+}
+/* here add the photo for background of login page */

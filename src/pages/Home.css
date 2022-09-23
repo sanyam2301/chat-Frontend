@@ -1,0 +1,13 @@
+.home__bg{
+background-image: "";
+height:92vh;
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+overflow-x: hidden;
+
+}
+.home-messagge-icon{
+    margin-left:10px;
+    display: inline-block;
+}
