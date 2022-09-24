@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-// import profilePic from "../assets/"
+import profile from "../assets/profile.png"
 import "./Signup.css";
 function Signup() {
   const [email, setEmail] = useState("");
@@ -15,15 +15,19 @@ function Signup() {
   const [imagePreview, setImagePreview] = useState(null);
   function imagevalidate(e) {
     const file = e.target.files[0];
-    if (file.size > 1048576) {
+    if (file.size >=1048576) {
       return alert("Maximum file size is 1Mb");
     } else {
       setImage(file);
-      setImagePreview(URL.createObjectURL[file]);
+      setImagePreview(URL.createObjectURL(file));
+      console.log(imagePreview);
     }
   }
   function HandleSignup(e) {
     e.preventDefault();
+    if(!image){
+      return alert("Please add a profile picture")
+    }
   }
 
   return (
@@ -31,7 +35,7 @@ function Signup() {
       <Row>
         <Col
           md={6}
-          classname="d-flex align-item-center justify-content-center flex-direction-column"
+          className="d-flex align-item-center justify-content-center flex-direction-column"
         >
           <Form
             style={{ width: "80%", maxwidth: "500px" }}
@@ -40,8 +44,8 @@ function Signup() {
             <h1 className="text-center">Create an Account</h1>
             <div className="signup-profile-pic__container">
               <img
-                src={imagePreview || image}
-                classname="signup-profile-pic"
+                src={imagePreview || profile}
+                className="signup-profile-pic"
                 alt="profile "
               />
               <label htmlFor="image-upload" className="image-upload-label">
@@ -99,7 +103,7 @@ function Signup() {
             </div>
           </Form>
         </Col>
-        <Col md={6} classname="signup_bg">
+        <Col md={6} className="signup_bg">
           {""}
         </Col>
       </Row>

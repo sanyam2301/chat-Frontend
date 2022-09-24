@@ -9,12 +9,12 @@ function Login() {
   return (
     <Container>
       <Row>
-        <Col md={7} classname="login__bg">
+        <Col md={7} className="login__bg">
           {""}
         </Col>
         <Col
           md={4}
-          classname="d-flex align-item-center justify-content-center flex-direction-column"
+          className="d-flex align-item-center justify-content-center flex-direction-column"
         >
           <Form style={{ width: "80%", maxwidth: "500px" }}>
             <Form.Group className="mb-3" controlId="formBasicEmail">

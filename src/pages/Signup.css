@@ -11,21 +11,21 @@
 width:100px;
 height:100px;
 margin:0 auto;
-position:relative
+position:relative;
 }
-.signup-profile-pic {
+.signup-profile-pic{
 width:100px;
-border-radius: 50%;
+border-radius:50%;
 border:2px solid gray;
 object-fit:cover;
 height:100px;
 }
-.add-picture -icon{
+.add-picture-icon{
 position:absolute;
 bottom:0;
-right:10px;
+right:0px;
 color:green;
-background:white;
+/* background:white; */
 cursor:pointer;
 z-index:99;
 }
