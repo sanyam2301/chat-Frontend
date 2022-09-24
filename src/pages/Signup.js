@@ -5,15 +5,26 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 // import profilePic from "../assets/"
 import "./Signup.css";
-function imagevalidate() {}
-function HandleSignup(e) {
-  e.preventDefault();
-}
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
   //image state
+  const [image, setImage] = useState(null);
+  const [uploadingImg, setuploadingImg] = useState(false);
+  const [imagePreview, setImagePreview] = useState(null);
+  function imagevalidate(e) {
+    const file = e.target.files[0];
+    if (file.size > 1048576) {
+      return alert("Maximum file size is 1Mb");
+    } else {
+      setImage(file);
+      setImagePreview(URL.createObjectURL[file]);
+    }
+  }
+  function HandleSignup(e) {
+    e.preventDefault();
+  }
 
   return (
     <Container>
@@ -28,7 +39,11 @@ function Signup() {
           >
             <h1 className="text-center">Create an Account</h1>
             <div className="signup-profile-pic__container">
-              {/* <img src="profilePic"/ classname="signup-profile-pic"> */}
+              <img
+                src={imagePreview || image}
+                classname="signup-profile-pic"
+                alt="profile "
+              />
               <label htmlFor="image-upload" className="image-upload-label">
                 <i className="fas fa-plus-circle  add-picture-icon"></i>
               </label>
