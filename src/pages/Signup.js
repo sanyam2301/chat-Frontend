@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import { Button } from "react-bootstrap";
 import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import profile from "../assets/profile.png"
+import profile from "../assets/profile.png";
 import "./Signup.css";
 function Signup() {
   const [email, setEmail] = useState("");
@@ -15,7 +15,7 @@ function Signup() {
   const [imagePreview, setImagePreview] = useState(null);
   function imagevalidate(e) {
     const file = e.target.files[0];
-    if (file.size >=1048576) {
+    if (file.size >= 1048576) {
       return alert("Maximum file size is 1Mb");
     } else {
       setImage(file);
@@ -23,11 +23,35 @@ function Signup() {
       console.log(imagePreview);
     }
   }
-  function HandleSignup(e) {
-    e.preventDefault();
-    if(!image){
-      return alert("Please add a profile picture")
+
+  async function uploadImage(image) {
+    const data = new FormData();
+    data.append("file", image);
+    data.append("upload_preset", "ltprot9m");
+    try {
+      setuploadingImg(true);
+      let res = await fetch(
+        "https://api.cloudinary.com/v1_1/dhr0vlmfi/image/upload",
+        {
+          method: "post",
+          body: data,
+        }
+      );
+      const urlData = await res.json();
+      setuploadingImg(false);
+      return urlData.url;
+    } catch {
+      setuploadingImg(false);
+      console.log("error image not upload");
     }
+  }
+  async function HandleSignup(e) {
+    e.preventDefault();
+    if (!image) {
+      return alert("Please add a profile picture");
+    }
+    const url = await uploadImage(image);
+    console.log(url);
   }
 
   return (
