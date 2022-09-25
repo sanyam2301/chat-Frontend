@@ -1,0 +1,8 @@
+.message-output{
+    height:80vh;
+    border:1.3px solid grey;
+    overflow-y: scroll;
+    margin-bottom: 10px;
+
+}
+/* now we go to backend */
