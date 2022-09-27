@@ -1,8 +1,8 @@
-import { CreateApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query";
 
 //define a service user over a url
 
-const appApi = CreateApi({
+const appApi = createApi({
   reducerPath: "appApi",
   baseQuery: fetchBaseQuery({
     baseUrl: "http://localhost:5001",
