@@ -5,10 +5,13 @@ import { Container, Row, Col } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import profile from "../assets/profile.png";
 import "./Signup.css";
+import { useSignupUserMutation } from "../services/appApi";
+
 function Signup() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
+  const [signupUser, { isLoading, error }] = useSignupUserMutation();
   //image state
   const [image, setImage] = useState(null);
   const [uploadingImg, setuploadingImg] = useState(false);
@@ -52,6 +55,12 @@ function Signup() {
     }
     const url = await uploadImage(image);
     console.log(url);
+
+    signupUser({ name, email, password, picture: url }).then(({ data }) => {
+      if (data) {
+        console.log(data);
+      }
+    });
   }
 
   return (
@@ -83,6 +92,7 @@ function Signup() {
                 onChange={imagevalidate}
               />
             </div>
+            {error && <p className="alert alert-danger">{error.data}</p>}
             <Form.Group className="mb-3" controlId="formBasicName">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -118,7 +128,7 @@ function Signup() {
               <Form.Check type="checkbox" label="Check me out" />
             </Form.Group>
             <Button variant="primary" type="submit">
-              {uploadingImg ? "Signing up" : "Sign up"}
+              {uploadingImg || isLoading ? "Signing you up..." : "Signup"}
             </Button>
             <div className="py-4">
               <p className="text-center">

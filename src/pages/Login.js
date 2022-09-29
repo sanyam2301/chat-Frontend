@@ -33,7 +33,6 @@ function Login() {
                 type="email"
                 placeholder="Enter email"
                 onChange={(e) => setEmail(e.target.value)}
-                s
                 value={email}
                 required
               />
